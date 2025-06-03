@@ -11,7 +11,7 @@
         <SharedColorModeButton class="mr-4"/>
 
         <NuxtLink to="/auth">
-          <UButton class="cursor-pointer rounded-full px-6 text-white" size="xl">Get it free</UButton>
+          <UButton class="cursor-pointer rounded-full px-6 text-zinc-50" size="xl">Get it free</UButton>
         </NuxtLink>
 
         <USeparator color="secondary" orientation="vertical" class="h-6 ml-5 mr-2" />

@@ -18,8 +18,7 @@ const isDark = computed({
       variant="soft"
       @click="isDark = !isDark"
       size="xl"
-      class="cursor-pointer text-xl"
-      :color="isDark ? 'light' : 'dark'"
+      class="cursor-pointer text-xl rounded-full"
     />
 
     <template #fallback>

@@ -1,6 +1,6 @@
 <template>
   <LayoutsMainNavbar />
-  <section class=" min-h-[100vh] bg-white dark:bg-zinc-900">
+  <section>
     <slot></slot>
   </section>
 </template>

@@ -6,7 +6,7 @@
   --ui-light: var(--ui-color-light-100);
   --ui-dark: var(--ui-color-dark-900);
   --ui-secondary: var(--ui-color-secondary-300);
-  /* --ui-white: var(--ui-color-white-50); */
+  /* --ui-white: #ffffff; */
 }
 
 .dark {
@@ -15,3 +15,5 @@
   --ui-dark: var(--ui-color-dark-900);
   --ui-secondary: var(--ui-color-secondary-700);
 }
+
+

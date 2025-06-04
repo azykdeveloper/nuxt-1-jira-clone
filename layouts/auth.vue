@@ -1,6 +1,7 @@
 <template>
-  <h2>Custom Layout</h2>
-  <div style="border: 2px dashed red; padding: 20px;">
+  <!-- <LayoutsMainNavbar /> -->
+
+  <section class="h-screen overflow-auto bg-[#fff]">
     <slot />
-  </div>
+  </section>
 </template>

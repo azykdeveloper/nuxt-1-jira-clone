@@ -8,6 +8,12 @@ const state = reactive({
   password: "",
 });
 
+const authStore = useAuthStore();
+const router = useRouter();
+
+let isLoading = ref(false);
+let error = ref('')
+
 const validate = (state: any): FormError[] => {
   const errors = [];
 
@@ -56,41 +62,63 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
   const { fullName, email, password } = event.data;
 
   if (props.status === "sign-up") {
-    toast.add({
-      title: "Sign Up Success",
-      description: "You have signed up successfully.",
-      color: "success",
-    });
-
+    isLoading.value = true;
     // Sign up logic here
     try {
-      const response = await ACCOUNT.create(
-        IDENTITY,
-        email,
-        password,
-        fullName,
-      );
-      console.log("Sign up response -> ", response);
-    } catch (error) {
-      console.log(error);
+      await ACCOUNT.create(IDENTITY, email, password, fullName);
+
+      await router.push("/sign-in");
+      
+      toast.add({
+        title: "Sign Up Success",
+        description: "You have signed up successfully.",
+        color: "success",
+      });
+    } catch (e:any) {
+      error.value = e.message || "An error occurred during sign up.";
+      toast.add({
+        title: "Sign Up Error",
+        description: "An error occurred during sign up.",
+        color: "error",
+      });
+    } finally {
+      isLoading.value = false;
     }
   } else if (props.status === "sign-in") {
-    toast.add({
-      title: "Sign In Success",
-      description: "You have signed in successfully.",
-      color: "success",
-    });
-
-    console.log("Sign in -> ", event.data);
+    isLoading.value = true;
     // Sign in logic here
-
     try {
-      const response = await ACCOUNT.createEmailPasswordSession(
+      await ACCOUNT.createEmailPasswordSession(
         email,
         password
       );
-      console.log("Sign up response -> ", response);
-    } catch (error) {}
+
+      let response = await ACCOUNT.get();
+
+      authStore.setUser({
+        id: response.$id,
+        name: response.name || "",
+        email: response.email || "",
+        status: response.status 
+      });
+
+      toast.add({
+        title: "Sign In Success",
+        description: "You have signed in successfully.",
+        color: "success",
+      });
+
+      await router.push("/");
+    } catch (e:any) {
+      error.value = e.message || "An error occurred during sign in.";
+      toast.add({
+        title: "Sign In Error",
+        description: "An error occurred during sign in.",
+        color: "error",
+      });
+    } finally {
+      isLoading.value = false;
+    }
   }
 }
 
@@ -101,19 +129,28 @@ const props = defineProps<{
 </script>
 
 <template>
-  <UForm :validate="validate" :state="state" class="w-md" @submit="onSubmit">
-    <UFormField name="username" v-if="props.status === 'sign-up'">
+  <UAlert
+    title="Error!"
+    :description="error"
+    icon="i-lucide-terminal"
+    color="error"
+    variant="subtle"
+    class="absolute top-2 left-[50%] translate-x-[-50%] w-xl z-50 text-left"
+    v-if="error"
+  />
+  <UForm :validate="validate" :state="state" @submit="onSubmit">
+    <UFormField name="fullName" v-if="props.status === 'sign-up'">
       <template #label>
         <span class="text-zinc-800"
-          >Username<span class="text-red-700">*</span></span
+          >Full name<span class="text-red-700">*</span></span
         >
       </template>
 
       <UInput
         type="text"
-        autocomplete="username"
+        autocomplete="fullName"
         size="xl"
-        placeholder="Enter your username"
+        placeholder="Enter your full name"
         v-model="state.fullName"
         class="w-full bg-[#fff] -mb-1"
         style="padding: 10px 20px"
@@ -165,6 +202,9 @@ const props = defineProps<{
       v-if="props.status === 'sign-up'"
       type="submit"
       class="rounded-sm text-center font-semibold text-md justify-center w-full py-2 mt-3 text-zinc-50 cursor-pointer"
+      :loading="isLoading"
+      :disabled="isLoading"
+      loading-icon="eos-icons:bubble-loading"
     >
       Sign up
     </UButton>
@@ -172,6 +212,9 @@ const props = defineProps<{
       v-if="props.status === 'sign-in'"
       type="submit"
       class="rounded-sm text-center font-semibold text-md justify-center w-full py-2 mt-3 text-zinc-50 cursor-pointer"
+      :loading="isLoading"
+      :disabled="isLoading"
+      loading-icon="eos-icons:bubble-loading"
     >
       Continue
     </UButton>
@@ -186,19 +229,10 @@ const props = defineProps<{
       />
       <SharedSocialLoginButton
         class="rounded-sm dark:bg-[#fff] dark:text-zinc-900 !ring-zinc-200"
-        icon="logos:microsoft-icon"
-        label="Microsoft"
+        icon="cib:github"
+        label="Github"
       />
-      <SharedSocialLoginButton
-        class="rounded-sm dark:bg-[#fff] dark:text-zinc-900 !ring-zinc-200"
-        icon="logos:apple"
-        label="Apple"
-      />
-      <SharedSocialLoginButton
-        class="rounded-sm dark:bg-[#fff] dark:text-zinc-900 !ring-zinc-200"
-        icon="devicon:slack"
-        label="Slack"
-      />
+      
     </div>
   </UForm>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <!-- <LayoutsMainNavbar /> -->
 
-  <section class="h-screen overflow-auto bg-[#fff]">
+  <section class="h-screen overflow-auto">
     <slot />
   </section>
 </template>

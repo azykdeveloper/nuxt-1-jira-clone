@@ -68,7 +68,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
       await ACCOUNT.create(IDENTITY, email, password, fullName);
 
       await router.push("/sign-in");
-      
+
       toast.add({
         title: "Sign Up Success",
         description: "You have signed up successfully.",
@@ -139,53 +139,35 @@ const props = defineProps<{
     v-if="error"
   />
   <UForm :validate="validate" :state="state" @submit="onSubmit">
-    <UFormField name="fullName" v-if="props.status === 'sign-up'">
-      <template #label>
-        <span class="text-zinc-800"
-          >Full name<span class="text-red-700">*</span></span
-        >
-      </template>
-
+    <UFormField label="Full name *" name="fullName" v-if="props.status === 'sign-up'">
       <UInput
         type="text"
         autocomplete="fullName"
         size="xl"
         placeholder="Enter your full name"
         v-model="state.fullName"
-        class="w-full bg-[#fff] -mb-1"
+        class="w-full -mb-1"
         style="padding: 10px 20px"
       />
     </UFormField>
-    <UFormField name="email" class="mt-4">
-      <template #label>
-        <span class="text-zinc-800"
-          >Email<span class="text-red-700">*</span></span
-        >
-      </template>
-
+    <UFormField name="email" label="Email *" class="mt-4">
       <UInput
         type="email"
         autocomplete="email"
         size="xl"
         placeholder="Enter your email"
         v-model="state.email"
-        class="w-full bg-[#fff] -mb-1"
+        class="w-full -mb-1"
         style="padding: 10px 20px"
       />
     </UFormField>
-    <UFormField name="password" class="mt-4">
-      <template #label>
-        <span class="text-zinc-800"
-          >Password<span class="text-red-700">*</span></span
-        >
-      </template>
-
+    <UFormField name="password" label="Password *" class="mt-4">
       <UInput
         type="password"
         size="xl"
         placeholder="Enter your password"
         v-model="state.password"
-        class="w-full bg-[#fff] -mb-1"
+        class="w-full -mb-1"
         style="padding: 10px 20px"
       />
     </UFormField>
@@ -223,12 +205,12 @@ const props = defineProps<{
 
     <div class="grid grid-cols-1 gap-4">
       <SharedSocialLoginButton
-        class="rounded-sm dark:bg-[#fff] dark:text-zinc-900 !ring-zinc-200"
+        class="rounded-sm "
         icon="devicon:google"
         label="Google"
       />
       <SharedSocialLoginButton
-        class="rounded-sm dark:bg-[#fff] dark:text-zinc-900 !ring-zinc-200"
+        class="rounded-sm "
         icon="cib:github"
         label="Github"
       />

@@ -9,7 +9,7 @@ useHead({
 
 <template>
   <section
-    class="py-5 flex flex-col items-center justify-center z-10 md:gap-8 text-center "
+    class="py-5 flex flex-col items-center justify-center z-10 md:gap-8 text-center dark:bg-zinc-900"
   >
     <NuxtLink to="/" class="flex items-center gap-4 mt-8">
       <UIcon name="logos:jira" class="text-4xl translate-y-1" />
@@ -17,7 +17,7 @@ useHead({
     </NuxtLink>
 
     <UCard
-      class="px-10 py-8 mb-5 max-w-[560px] md:w-[560px] bg-transparent md:bg-white md:shadow-lg ring-0 md:ring-1"
+      class="px-10 py-8 mb-5 max-w-[560px] md:w-[560px] md:dark:bg-zinc-800 md:light:bg-[#fff]  md:shadow-lg ring-0 md:ring-1"
     >
       <h2 class="text-3xl font-bold">Get started with Jira</h2>
       <p class="mt-2">It’s free for up to 10 users - no credit card needed.</p>

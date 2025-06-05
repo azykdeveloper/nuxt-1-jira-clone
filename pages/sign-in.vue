@@ -10,10 +10,10 @@ useHead({
 
 <template>
   <section
-    class="py-10 flex flex-col items-center justify-center z-10 md:gap-8 text-center"
+    class="py-10 flex flex-col items-center justify-center z-10 md:gap-8 text-center dark:bg-zinc-900"
   >
     <UCard
-      class="mt-5 px-6 py-4 mb-5 w-[400px]  bg-transparent md:bg-white md:shadow-lg ring-0"
+      class="mt-5 px-6 py-4 mb-5 w-[400px]  md:dark:bg-zinc-800 md:light:bg-[#fff]  md:shadow-lg ring-0"
     >
       <!-- Title -->
       <h2 class="text-3xl font-bold">
@@ -44,16 +44,21 @@ useHead({
 </template>
 
 <style scoped>
-section {
-  background-image: url("/public/auth-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #e9f2fe;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 25% 57%, 25% 47%, 0 47%);
+  z-index: -1;
 }
 
 @media (max-width: 768px) {
-  section {
-    background: #fff;
+  section::after {
+    clip-path: polygon(0 0, 100% 0, 100% 16%, 25% 20%, 25% 17%, 0 17%);
   }
 }
 </style>

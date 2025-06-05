@@ -36,14 +36,14 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
   >
     <!-- section 1 -->
     <div
-      class=" max-w-5xl mx-auto py-14 px-4 m-0 flex flex-col md:flex-row gap-10 flex-1 items-center justify-between text-center md:text-left"
+      class=" max-w-5xl mx-auto py-14 px-10 m-0 flex flex-col md:flex-row gap-10 flex-1 items-center justify-between text-center md:text-left"
     >
       <!-- title -->
       <div>
         <h1
           class="text-4xl md:text-5xl lg:text-6xl leading-10 md:leading-16 text-zinc-900 dark:text-zinc-50"
         >
-          <b>Great outcomes</b> <br />
+          <b class="font-bold">Great outcomes</b> <br />
           start with
           <span class="relative inline-block"
             >Jira
@@ -60,7 +60,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
       <UForm
         :validate="validate"
         :state="state"
-        class="space-y-6"
+        class="space-y-6 w-full sm:w-96"
         @submit="onSubmit"
       >
         <UFormField

@@ -32,11 +32,11 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
 <template>
   <!-- HERO -->
   <section
-    class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-800 pt-[10vh]"
+    class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-800 pt-[10vh] bg-auto"
   >
     <!-- section 1 -->
     <div
-      class="max-w-5xl mx-auto py-14 px-4 flex flex-col md:flex-row gap-10 flex-1 items-center justify-between text-center md:text-left"
+      class=" max-w-5xl mx-auto py-14 px-4 m-0 flex flex-col md:flex-row gap-10 flex-1 items-center justify-between text-center md:text-left"
     >
       <!-- title -->
       <div>
@@ -60,7 +60,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
       <UForm
         :validate="validate"
         :state="state"
-        class="space-y-6 w-md"
+        class="space-y-6"
         @submit="onSubmit"
       >
         <UFormField
@@ -80,7 +80,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
 
         <UButton
           type="submit"
-          class="rounded-full text-center font-semibold text-xl justify-center w-full py-2 text-zinc-50 cursor-pointer"
+          class="rounded-full text-center font-semibold text-lg sm:text-xl justify-center w-full py-2 text-zinc-50 cursor-pointer"
         >
           Sign up
         </UButton>

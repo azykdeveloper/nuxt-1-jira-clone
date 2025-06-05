@@ -1,6 +1,6 @@
 <template>
   <LayoutsMainNavbar />
-  <section>
+  <section >
     <slot></slot>
   </section>
 </template>

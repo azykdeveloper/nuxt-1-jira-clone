@@ -30,7 +30,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
   <UForm
     :validate="validate"
     :state="state"
-    class="space-y-6 w-md"
+    class="space-y-6 w-md "
     @submit="onSubmit"
   >
     <UFormField
@@ -59,9 +59,8 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
 
     <div class="grid grid-cols-2 gap-4">
       <SharedSocialLoginButton icon="devicon:google" label="Google" />
-      <SharedSocialLoginButton icon="logos:microsoft-icon" label="Microsoft" />
-      <SharedSocialLoginButton icon="logos:apple" label="Apple" />
-      <SharedSocialLoginButton icon="devicon:slack" label="Slack" />
+      <SharedSocialLoginButton icon="cib:github" label="Github" />
+      
     </div>
   </UForm>
 </template>

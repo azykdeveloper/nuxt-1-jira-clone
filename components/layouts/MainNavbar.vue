@@ -9,14 +9,14 @@
       <div class="flex items-center ">
         <SharedColorModeButton class="mr-4"/>
 
-        <NuxtLink to="/sign-up">
-          <UButton class="cursor-pointer rounded-full px-6 text-zinc-50" size="xl">Get it free</UButton>
+        <NuxtLink to="/try">
+          <UButton class="cursor-pointer rounded-full text-zinc-50 px-3 sm:px-6 sm:py-2">Get it free</UButton>
         </NuxtLink>
 
-        <USeparator color="secondary" orientation="vertical" class="h-6 ml-5 mr-2" />
+        <USeparator color="secondary" orientation="vertical" class="h-6 mx-2" />
 
         <NuxtLink to="/sign-in">
-          <UButton class="cursor-pointer rounded-full" size="xl" variant="link" >Sign in</UButton>
+          <UButton class="cursor-pointer rounded-full px-3 sm:px-6 sm:py-2" variant="outline" >Sign in</UButton>
         </NuxtLink>
       </div>
     </UContainer>

@@ -11,3 +11,6 @@ client
 
 export const ACCOUNT: Account = new Account(client);
 export const IDENTITY: string = ID.unique();
+
+
+console.log("Appwrite endpoint:", useRuntimeConfig().public.appwriteEndpoint);

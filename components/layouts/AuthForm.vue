@@ -56,7 +56,7 @@ async function signUp({ data }: FormSubmitEvent<typeof state>) {
   try {
     await ACCOUNT.create(IDENTITY, data.email, data.password, data.fullName);
     toast.add({ title: "Success", description: "Signed up successfully.", color: "success" });
-    await router.push("/sign-in");
+    await router.push("/");
   } catch (e: any) {
     error.value = e.message || "Sign up failed.";
     toast.add({ title: "Error", description: error.value, color: "error" });

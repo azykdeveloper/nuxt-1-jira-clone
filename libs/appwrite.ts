@@ -12,5 +12,5 @@ client
 export const ACCOUNT: Account = new Account(client);
 export const IDENTITY: string = ID.unique();
 
-console.log("hello from appwrite.ts");
+console.log("hello");
 console.log("Appwrite endpoint:", useRuntimeConfig().public.appwriteEndpoint);

@@ -1,8 +1,5 @@
 import { Client, Account, ID } from "appwrite";
 
-// const url: string = import.meta.env.NUXT_PUBLIC_APPWRITE_ENDPOINT;
-// const project: string = import.meta.env.NUXT_PUBLIC_APPWRITE_PROJECT;
-
 const client: Client = new Client();
 
 client

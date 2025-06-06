@@ -1,13 +1,12 @@
 <template>
-  <!-- <LayoutsMainNavbar /> -->
-
+  <SharedLoader v-if="loadingStore.isLoading" />
   <section class="h-screen overflow-auto">
     <slot />
   </section>
 </template>
 
-<script>
-export default {
-  layout: "auth",
-};
+<script setup lang="ts">
+
+const loadingStore = useLoadingStore()
+
 </script>

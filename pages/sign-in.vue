@@ -1,11 +1,13 @@
 <script setup lang="ts">
-
 definePageMeta({
   layout: "auth",
+  middleware: ["guest"],
 });
 useHead({
-  title: "Sign In - Jira",
+  title: "Sign In | Jira",
 });
+
+
 </script>
 
 <template>
@@ -25,7 +27,7 @@ useHead({
       <p class="mt-2 text-zinc-600">Log in to continue</p>
 
       <!-- Form -->
-      <LayoutsAuthForm :status="'sign-in'" class="mt-4 w-full" />
+      <LayoutsAuthForm status="sign-in" class="mt-4 w-full" />
 
       <div class="mt-8 text-sm text-zinc-500">
         <p>

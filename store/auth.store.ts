@@ -8,12 +8,10 @@ interface IUser {
 }
 
 export const useAuthStore = defineStore("auth", {
-  state() {
-    return {
-      user: null as IUser | null,
-      isAuthenticated: false,
-    };
-  },
+  state: () => ({
+    user: null as IUser | null,
+    isAuthenticated: false,
+  }),
   actions: {
     setUser(user: IUser) {
       this.user = user;
@@ -24,8 +22,5 @@ export const useAuthStore = defineStore("auth", {
       this.isAuthenticated = false;
     },
   },
-  getters: {
-
-  }
-  
-})
+  getters: {},
+});

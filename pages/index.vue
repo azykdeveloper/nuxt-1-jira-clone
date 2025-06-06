@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from "@nuxt/ui";
 useHead({
-  title: "Home Page",
+  title: "Jira",
 });
 
 const state = reactive({

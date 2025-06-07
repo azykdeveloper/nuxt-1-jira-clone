@@ -17,7 +17,7 @@ const user = authStore.user;
         <SharedColorModeButton class="mr-4" />
 
         <template v-if="user?.status">
-          <SharedNavbarDropdown />
+          <SharedNavbarDropdown :user="user" />
         </template>
 
         <template v-else>

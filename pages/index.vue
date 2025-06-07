@@ -4,6 +4,8 @@ useHead({
   title: "Jira",
 });
 
+const authStore = useAuthStore();
+
 const state = reactive({
   email: undefined,
 });
@@ -36,6 +38,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
   >
     <!-- section 1 -->
     <div
+      v-if="!authStore.user"
       class=" max-w-5xl mx-auto py-14 px-10 m-0 flex flex-col md:flex-row gap-10 flex-1 items-center justify-between text-center md:text-left"
     >
       <!-- title -->
@@ -96,6 +99,12 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
         </div>
       </UForm>
     </div>
+
+    <!-- section 2 -->
+     <div v-else class="max-w-5xl mx-auto py-14 px-10  gap-10 flex-1 items-center justify-between text-center md:text-left">
+      <h1 class="text-5xl font-bold">Hello, {{ authStore.user.name }}</h1>
+      <p class="mt-6 text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et beatae, iusto, dolore magni perspiciatis voluptas illo dolor quibusdam, saepe nihil provident fugit. Ea dicta voluptatum, quis ducimus aperiam deserunt. Dolor?</p>
+     </div>
   </section>
 </template>
 

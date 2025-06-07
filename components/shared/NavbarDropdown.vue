@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@nuxt/ui'
-
 import { ACCOUNT } from "~/libs/appwrite";
+
+defineProps<{ user: any }>()
 
 const router = useRouter();
 const authStore = useAuthStore();
 const loadingStore = useLoadingStore();
-const user = authStore.user;
 
 async function logout() {
   loadingStore.setLoading(true)
@@ -31,6 +31,10 @@ const items = ref<DropdownMenuItem[]>([
     icon: 'i-lucide-user'
   },
   {
+    label: 'Documents',
+    icon: 'i-lucide-file'
+  },
+  {
     label: 'Logout',
     icon: 'ic:outline-logout',
     color: 'error'
@@ -41,6 +45,9 @@ const handleItemClick = (label: string) => {
   switch (label) {
     case 'Profile':
       console.log('Navigate to profile')
+      break
+    case 'Documents':
+      router.push('/documents')
       break
     case 'Logout':
       logout()

@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <SharedLoader v-if="loadingStore.isLoading" />
-    <div v-else>
-      <LayoutsDocNavbar />
-      <LayoutsDocSidebar />
-      <section class="pt-[calc(72px+24px)] md:pl-[312px] pl-3 pr-3 p-5 h-screen bg-zinc-50 dark:bg-zinc-800 overflow-auto">
-        <slot></slot>
-      </section>
-    </div>
+  <SharedLoader v-if="loadingStore.isLoading" />
+  <div v-else>
+    <LayoutsDocNavbar />
+    <LayoutsDocSidebar />
+    <section
+      class="pt-[calc(72px+24px)] md:pl-[312px] pl-3 pr-3 p-5 h-screen bg-zinc-50 dark:bg-zinc-800 overflow-auto"
+    >
+      <slot></slot>
+    </section>
   </div>
 </template>
 
@@ -38,5 +38,4 @@ onMounted(async () => {
     }
   }
 });
-
 </script>

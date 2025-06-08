@@ -2,11 +2,10 @@
 import type { DropdownMenuItem } from '@nuxt/ui'
 import { ACCOUNT } from "~/libs/appwrite";
 
-defineProps<{ user: any }>()
-
 const router = useRouter();
 const authStore = useAuthStore();
 const loadingStore = useLoadingStore();
+const user = computed(() => authStore.user)
 
 async function logout() {
   loadingStore.setLoading(true)
@@ -60,6 +59,7 @@ const handleItemClick = (label: string) => {
 
 <template>
   <UDropdownMenu
+    
     :items="items"
     :content="{ align: 'center', side: 'bottom', sideOffset: 8 }"
     :ui="{ content: 'w-48' }"

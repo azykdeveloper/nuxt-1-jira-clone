@@ -26,36 +26,8 @@
 </template>
 
 <script setup lang="ts">
-interface ISidebarItem {
-  icon: string;
-  label: string;
-  to: string;
-}
-const sidebarItems: ISidebarItem[] = [
-  {
-    icon: "mage:dashboard-fill",
-    label: "Dashboard",
-    to: "/documents",
-  },
-  {
-    icon: "ri:todo-fill",
-    label: "To Do",
-    to: "/documents/todos",
-  },
-  {
-    icon: "game-icons:progression",
-    label: "In Progress",
-    to: "/documents/in-progress",
-  },
-  {
-    icon: "eos-icons:product-subscriptions-outlined",
-    label: "Produced",
-    to: "/documents/produced",
-  },
-  {
-    icon: "material-symbols:cloud-done-rounded",
-    label: "Done",
-    to: "/documents/done",
-  },
-];
+import { sidebarItems } from '~/constants';
+
+
+
 </script>

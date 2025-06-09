@@ -65,31 +65,37 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
 </script>
 
 <template>
+  
   <UPopover
+  
     :content="{
       align: 'center',
-      side: 'bottom',
+      side: 'left',
       sideOffset: 8,
+      
     }"
   >
     <UButton
       icon="radix-icons:plus-circled"
       class="text-2xl cursor-pointer"
       variant="link"
+      color="success"
     />
 
-    <template #content>
+    <template #content color="success">
       <UForm
         :validate="validate"
         :state="state"
-        class="space-y-4 w-96 p-5"
+        class="space-y-4 w-96 p-5 "
         @submit="onSubmit"
+        
       >
-        <UFormField help="" name="name">
+        <UFormField help="" name="name" >
           <UInput
             placeholder="Deal name"
             v-model="state.name"
             class="w-full -mb-2"
+            color="success"
           />
         </UFormField>
         <UFormField help="" name="description">
@@ -97,6 +103,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
             placeholder="Description..."
             v-model="state.description"
             class="w-full -mb-2"
+            color="success"
           />
         </UFormField>
 
@@ -106,6 +113,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
           :loading="isPending"
           :disabled="isPending"
           loading-icon="eos-icons:bubble-loading"
+          color="success"
         >
           Add
         </UButton>

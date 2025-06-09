@@ -5,16 +5,17 @@ import { DATABASES } from "~/libs/appwrite";
 import type { IDeal, IStatuses } from "~/types";
 
 export const useStatusQuery = () => {
-  // const { user } = useAuthStore();
-  const user = computed(() => useAuthStore().user);
+  const authStore = useAuthStore();
+  const userId = computed(() => authStore.user?.id);
   
-  console.log(user);
 
   return useQuery({
     queryKey: ["deals"],
+    // enabled: !!userId.value,
+    enabled: computed(() => !!userId.value),
     queryFn: () =>
       DATABASES.listDocuments("jira-db", "deals", [
-        Query.equal("userId", user?.id || ""),
+        Query.equal("userId", userId.value!),
       ]),
     select: (data) => {
       const newBoard: IStatuses[] = statuses.map((status) => ({

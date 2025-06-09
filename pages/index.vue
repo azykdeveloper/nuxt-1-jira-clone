@@ -27,7 +27,7 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
     description: "The form has been submitted.",
     color: "success",
   });
-  console.log(event.data);
+  // console.log(event.data);
 }
 </script>
 

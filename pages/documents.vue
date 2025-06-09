@@ -29,7 +29,7 @@
           v-for="deal in column.items"
           :key="deal.$id"
           role="button"
-          class="bg-[#fff] dark:bg-zinc-900 shadow-xl mb-3"
+          class="bg-[#fff] dark:bg-zinc-900 shadow-xl mb-3 card-animation"
           draggable="true"
         >
           <template #header>
@@ -62,3 +62,19 @@ useHead({
 const { data, isLoading, refetch } = useStatusQuery();
 console.log(data);
 </script>
+
+<style scoped>
+@keyframes show {
+  from {
+    transform: scale(.5) translateY(-30px);
+    opacity: .4;
+  } to {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+
+.card-animation {
+  animation: show .3s ease-in-out;
+}
+</style>

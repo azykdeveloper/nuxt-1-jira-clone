@@ -7,18 +7,18 @@ import type { IDeal, IStatuses } from "~/types";
 export const useStatusQuery = () => {
   const authStore = useAuthStore();
   const userId = computed(() => authStore.user?.id);
-  
 
   return useQuery({
     queryKey: ["deals"],
     // enabled: !!userId.value,
     enabled: computed(() => !!userId.value),
+
     queryFn: () =>
       DATABASES.listDocuments("jira-db", "deals", [
         Query.equal("userId", userId.value!),
       ]),
     select: (data) => {
-      const newBoard: IStatuses[] = statuses.map((status) => ({
+      const newBoard: IStatuses[] = statuses.map(status => ({
         ...status,
         items: [],
       }));

@@ -1,4 +1,4 @@
-import { Client, Account, ID, Databases } from "appwrite";
+import { Client, Account, Databases } from "appwrite";
 
 const config = useRuntimeConfig();
 
@@ -11,5 +11,4 @@ client
 
 export const ACCOUNT: Account = new Account(client);
 export const DATABASES: Databases = new Databases(client);
-export const IDENTITY: string = ID.unique();
 

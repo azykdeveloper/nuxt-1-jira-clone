@@ -1,20 +1,38 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from "@nuxt/ui";
 import { useMutation } from "@tanstack/vue-query";
-import { ID } from "appwrite";
 import { DATABASES } from "~/libs/appwrite";
-import type { EnumStatus, IDealForm } from "~/types";
+
+const props = defineProps({
+  refetch: {
+    type: Function,
+    required: true,
+  },
+});
+
+const editDealStore = useEditDealStore();
+
+const isOpen = computed({
+  get: () => editDealStore.isOpen,
+  set: (value) => {
+    editDealStore.isOpen = value;
+  },
+});
 
 const state = reactive({
-  name: undefined,
-  description: undefined,
+  name: editDealStore.currentDeal?.name,
+  description: editDealStore.currentDeal?.description,
 });
-const props = defineProps<{
-  status: EnumStatus;
-  refetch: () => any;
-}>();
+
+watch(
+  () => editDealStore.currentDeal,
+  () => {
+    state.name = editDealStore.currentDeal?.name;
+    state.description = editDealStore.currentDeal?.description;
+  }
+);
+
 const toast = useToast();
-const { user } = useAuthStore();
 
 const validate = (state: any): FormError[] => {
   const errors = [];
@@ -32,66 +50,49 @@ const validate = (state: any): FormError[] => {
 };
 
 const { isPending, mutate } = useMutation({
-  mutationKey: ["create-deal"],
-  mutationFn: async (data: IDealForm) =>
-    DATABASES.createDocument("jira-db", "deals", ID.unique(), data),
+  mutationKey: ["edit-deal", editDealStore.currentDeal?.$id],
+  mutationFn: async (data: {
+    id: string;
+    name: string;
+    description: string;
+  }) => {
+    await DATABASES.updateDocument("jira-db", "deals", data.id, {
+      name: data.name,
+      description: data.description,
+    });
+  },
   onSuccess: () => {
+    props.refetch();
     toast.add({
       title: "Success",
-      description: "The deal has been created.",
+      description: "Deal has been updated.",
       color: "success",
     });
-    props.refetch();
-    state.name = undefined;
-    state.description = undefined;
+
+    isOpen.value = false;
   },
-  onError: () => {
-    toast.add({
-      title: "Error",
-      description: "The deal has not been created.",
-      color: "error",
-    });
-  },
-  
 });
 
 async function onSubmit(event: FormSubmitEvent<typeof state>) {
   mutate({
+    id: editDealStore.currentDeal?.$id!,
     name: event.data.name!,
     description: event.data.description!,
-    status: props.status,
-    userId: user?.id!,
   });
 }
 </script>
 
 <template>
-  
-  <UPopover
-  
-    :content="{
-      align: 'center',
-      side: 'left',
-      sideOffset: 8,
-      
-    }"
-  >
-    <UButton
-      icon="radix-icons:plus-circled"
-      class="text-2xl cursor-pointer"
-      variant="link"
-      color="success"
-    />
+  <UModal v-model:open="isOpen" title="Edit Deal" description="Update the deal details below." >
 
-    <template #content color="success">
+    <template #content>
       <UForm
         :validate="validate"
         :state="state"
-        class="space-y-4 w-96 p-5 "
+        class="space-y-4 w-96 p-5"
         @submit="onSubmit"
-        
       >
-        <UFormField help="" name="name" >
+        <UFormField help="" name="name">
           <UInput
             placeholder="Deal name"
             v-model="state.name"
@@ -120,5 +121,5 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
         </UButton>
       </UForm>
     </template>
-  </UPopover>
+  </UModal>
 </template>

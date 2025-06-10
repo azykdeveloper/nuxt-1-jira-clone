@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from "@nuxt/ui";
-import { ACCOUNT, IDENTITY } from "~/libs/appwrite";
+import { ID } from "appwrite";
+import { ACCOUNT } from "~/libs/appwrite";
 
 // PROPS
 const props = defineProps<{
@@ -54,9 +55,9 @@ const validate = (state: any): FormError[] => {
 async function signUp({ data }: FormSubmitEvent<typeof state>) {
   isLoading.value = true;
   try {
-    await ACCOUNT.create(IDENTITY, data.email, data.password, data.fullName);
+    await ACCOUNT.create(ID.unique(), data.email, data.password, data.fullName);
     toast.add({ title: "Success", description: "Signed up successfully.", color: "success" });
-    await router.push("/");
+    await router.push("/sign-in");
   } catch (e: any) {
     error.value = e.message || "Sign up failed.";
     toast.add({ title: "Error", description: error.value, color: "error" });

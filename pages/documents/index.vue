@@ -17,12 +17,8 @@
         :key="column.id"
         @dragover="handleDragOver"
         @drop="handleDrop(column)"
-        class="px-2"
-        :class="
-          isMoving
-            ? '  border-l border-r border-dashed border-zinc-500/50 h-screen'
-            : ''
-        "
+        class="px-2 h-full border-l border-dashed border-transparent"
+        :class="[isMoving ? 'border-zinc-500/50' : '', 'last:border-r']"
       >
         <UButton class="h-10 cursor-pointer w-full" variant="outline">
           <span>{{ column.name }}</span>
@@ -37,44 +33,45 @@
           />
         </div>
 
-        <UCard
+        <div
           v-if="column.items"
           v-for="deal in column.items"
           :key="deal.$id"
-          role="button"
-          class="bg-[#fff] dark:bg-zinc-900 shadow-xl mb-3 card-animation"
+          class="bg-[#fff] dark:bg-zinc-900 shadow-xl rounded-lg px-5 pt-5 pb-1 flex flex-col justify-between mb-4"
           draggable="true"
           @dragstart="handleDragStart(deal, column)"
           :class="isPending ? 'opacity-50 cursor-not-allowed' : ''"
         >
-          <template #header>
-            <span class="font-bold text-lg uppercase">{{ deal.name }}</span>
-          </template>
+          <div>
+            <h3 class="font-bold text-lg uppercase mb-3">{{ deal.name }}</h3>
 
-          <p>{{ deal.description.slice(0, 80) }}...</p>
+            <p class="text-zinc-500 mb-5">{{ deal.description.slice(0, 80) }}...</p>
+          </div>
 
-          <template #footer>
-            <span
-              role="button"
+          <div
+            class="border-t border-t-zinc-500/50 flex justify-end items-center"
+          >
+            <UButton
+              icon="material-symbols:chrome-reader-mode"
+              variant="link"
+              class="cursor-pointer text-2xl text-zinc-500"
               @click="setCurrentDeal(deal)"
-              class="text-sm text-blue-500 cursor-pointer hover:opacity-60 border-b "
-              >More
-            </span>
-          </template>
-        </UCard>
+            />
+            
+          </div>
+        </div>
       </div>
     </div>
-
-
   </section>
 
-  <SharedSlideOver />
+  <DocSlideOver />
 </template>
 
 <script setup lang="ts">
 import { useMutation } from "@tanstack/vue-query";
+import DocSlideOver from "~/components/layouts/DocSlideOver.vue";
 import { DATABASES } from "~/libs/appwrite";
-import { useStatusQuery } from "~/query/use-status-query";
+import { useStatusQuery } from "~/query/use-status";
 import type { IDeal, IStatuses } from "~/types";
 
 definePageMeta({

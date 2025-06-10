@@ -6,26 +6,26 @@ export const sidebarItems: ISidebarItem[] = [
     label: "Dashboard",
     to: "/documents",
   },
-  // {
-  //   icon: "ri:todo-fill",
-  //   label: "To Do",
-  //   to: "/documents/todos",
-  // },
-  // {
-  //   icon: "game-icons:progression",
-  //   label: "In Progress",
-  //   to: "/documents/in-progress",
-  // },
-  // {
-  //   icon: "eos-icons:product-subscriptions-outlined",
-  //   label: "Produced",
-  //   to: "/documents/produced",
-  // },
-  // {
-  //   icon: "material-symbols:cloud-done-rounded",
-  //   label: "Done",
-  //   to: "/documents/done",
-  // },
+  {
+    icon: "ri:todo-fill",
+    label: "To Do",
+    to: "/documents/to-do",
+  },
+  {
+    icon: "game-icons:progression",
+    label: "In Progress",
+    to: "/documents/in-progress",
+  },
+  {
+    icon: "eos-icons:product-subscriptions-outlined",
+    label: "Produced",
+    to: "/documents/produced",
+  },
+  {
+    icon: "material-symbols:cloud-done-rounded",
+    label: "Done",
+    to: "/documents/done",
+  },
 ];
 
 export const statuses: IStatuses[] = [

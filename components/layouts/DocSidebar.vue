@@ -27,7 +27,4 @@
 
 <script setup lang="ts">
 import { sidebarItems } from '~/constants';
-
-
-
 </script>

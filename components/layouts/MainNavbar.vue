@@ -21,10 +21,12 @@ const user = authStore.user;
         </template>
 
         <template v-else>
-          <UButton
-            class="cursor-pointer rounded-full text-zinc-50 px-3 sm:px-6 sm:py-2"
-            >Get it free</UButton
-          >
+          <NuxtLink to="/sign-up">
+            <UButton
+              class="cursor-pointer rounded-full text-zinc-50 px-3 sm:px-6 sm:py-2"
+              >Sign up</UButton
+            >
+          </NuxtLink>
           <USeparator
             color="secondary"
             orientation="vertical"

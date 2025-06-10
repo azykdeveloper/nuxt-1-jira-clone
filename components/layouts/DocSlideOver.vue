@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const currentDealStore = useCurrentDealStore();
 
+// SlideOver
 const isOpen = computed({
   get: () => currentDealStore.isOpen,
   set: (value) => currentDealStore.toggle(),
 });
 
+// Description  
 const expended = ref(true);
-
 watch(
   () => currentDealStore.currentDeal?.description,
   (desc) => {
@@ -15,25 +16,34 @@ watch(
   },
   { immediate: true }
 );
-
 function toggleExpended() {
   expended.value = !expended.value;
 }
 </script>
 
 <template>
-  <USlideover v-model:open="isOpen">
+  <USlideover v-model:open="isOpen" class="overflow-auto">
     <template #content>
       <!-- Top -->
       <div id="top" class="p-4 m-4 border border-dashed">
         <!-- Deal name -->
-        <h3 class="flex gap-3 items-center mb-5">
-          <span class="font-semibold text-xl">{{
-            currentDealStore.currentDeal?.name
-          }}</span>
-          <UBadge>
-            {{ currentDealStore.currentDeal?.status }}
-          </UBadge>
+        <h3 class="flex items-center justify-between mb-5">
+          <div class="flex gap-3 items-center">
+            <span class="font-semibold text-xl">{{
+              currentDealStore.currentDeal?.name
+            }}</span>
+            <UBadge class="text-zinc-900 dark:text-zinc-50 bg-red-500/50">
+              {{ currentDealStore.currentDeal?.status }}
+            </UBadge>
+          </div>
+
+          <UButton
+            icon="material-symbols:close"
+            class="text-xl cursor-pointer"
+            variant="outline"
+            color="error"
+            @click="isOpen = false"
+          />
         </h3>
 
         <!-- Created -->
@@ -57,7 +67,13 @@ function toggleExpended() {
           <div v-if="expended" class="">
             <p>{{ currentDealStore.currentDeal?.description }}</p>
 
-            <div v-if="currentDealStore.currentDeal?.description && currentDealStore.currentDeal.description.length > 200" class="text-center mt-3 text-blue-500">
+            <div
+              v-if="
+                currentDealStore.currentDeal?.description &&
+                currentDealStore.currentDeal.description.length > 200
+              "
+              class="text-center mt-3 text-blue-500"
+            >
               <UIcon
                 name="heroicons:chevron-up"
                 role="button"
@@ -87,9 +103,9 @@ function toggleExpended() {
       </div>
 
       <!-- Comment -->
-       <div class="m-4">
-        <SharedCommentArea />
-       </div>
+      <div class="m-4">
+        <LayoutsDocComments />
+      </div>
     </template>
   </USlideover>
 </template>

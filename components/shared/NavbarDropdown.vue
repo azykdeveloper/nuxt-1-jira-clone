@@ -43,7 +43,7 @@ const items = ref<DropdownMenuItem[]>([
 const handleItemClick = (label: string) => {
   switch (label) {
     case 'Profile':
-      console.log('Navigate to profile')
+    router.push('/profile')
       break
     case 'Documents':
       router.push('/documents')

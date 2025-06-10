@@ -24,7 +24,7 @@ export interface IDeal extends IBaseField {
   name: string;
   description: string;
   status: EnumStatus;
-  commments: IComment[];
+  comments: IComment[];
 }
 
 export interface IDealForm {

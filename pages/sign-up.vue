@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { NuxtLink } from '#components';
+
 definePageMeta({
   layout: "auth",
   middleware: ["guest"],
@@ -16,12 +18,12 @@ useHead({
       class="mt-5 px-6 py-4 mb-5 w-[400px] md:dark:bg-zinc-800 md:light:bg-[#fff] md:shadow-lg ring-0"
     >
       <!-- Title -->
-      <h2 class="text-3xl font-bold">
+      <NuxtLink to="/" class="text-3xl font-bold">
         <UIcon name="logos:atlassian" />
         <span class="font-black text-blue-600 ml-1.5 tracking-widest"
           >ATLASSIAN</span
         >
-      </h2>
+      </NuxtLink>
       <p class="myn-2 text-zinc-500 ">Sign up to continue</p>
 
       <!-- Form -->

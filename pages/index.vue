@@ -37,7 +37,7 @@ const authStore = useAuthStore();
       </div>
 
       <div class="hidden md:block relative">
-        <NuxtImg src="https://static-00.iconduck.com/assets.00/jira-icon-2048x2048-nufjgz6n.png" width="300" height="300"  />
+        <img src="/public/jira.png" alt="jira" width="300" height="300">
         <div style="filter: blur(200px);" class=" absolute w-[300px] h-[300px] rounded-full top-0 bg-blue-600 "> </div>
       </div>
     </div>

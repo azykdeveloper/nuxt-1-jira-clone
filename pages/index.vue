@@ -1,48 +1,25 @@
 <script setup lang="ts">
-import type { FormError, FormSubmitEvent } from "@nuxt/ui";
 useHead({
   title: "Jira",
 });
 
 const authStore = useAuthStore();
 
-const state = reactive({
-  email: undefined,
-});
 
-const validate = (state: any): FormError[] => {
-  const errors = [];
-  if (!state.email)
-    errors.push({
-      name: "email",
-      message: "Please enter a valid email address.",
-    });
-  return errors;
-};
-
-const toast = useToast();
-async function onSubmit(event: FormSubmitEvent<typeof state>) {
-  toast.add({
-    title: "Success",
-    description: "The form has been submitted.",
-    color: "success",
-  });
-  // console.log(event.data);
-}
 </script>
 
 <template>
   <!-- HERO -->
   <section
-    class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-800 pt-[10vh] bg-auto"
+    class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-900 pt-[10vh] bg-auto"
   >
     <!-- section 1 -->
     <div
       v-if="!authStore.user"
-      class=" max-w-5xl mx-auto py-14 px-10 m-0 flex flex-col md:flex-row gap-10 flex-1 items-center justify-between text-center md:text-left"
+      class=" h-[90vh] max-w-5xl mx-auto py-14 px-10 m-0 flex flex-col md:flex-row gap-10 flex-1 items-center justify-between text-center md:text-left"
     >
       <!-- title -->
-      <div>
+      <div class="flex-1">
         <h1
           class="text-4xl md:text-5xl lg:text-6xl leading-10 md:leading-16 text-zinc-900 dark:text-zinc-50"
         >
@@ -59,45 +36,10 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
         </p>
       </div>
 
-      <!-- Form -->
-      <UForm
-        :validate="validate"
-        :state="state"
-        class="space-y-6 w-full sm:w-96"
-        @submit="onSubmit"
-      >
-        <UFormField
-          class=""
-          label="Work email"
-          help="Using a work email helps find teammates and boost collaboration."
-          name="email"
-        >
-          <UInput
-            size="xl"
-            placeholder="you@company.com"
-            v-model="state.email"
-            class="w-full"
-            style="border-radius: 50px; padding: 10px 20px"
-          />
-        </UFormField>
-
-        <UButton
-          type="submit"
-          class="rounded-full text-center font-semibold text-lg sm:text-xl justify-center w-full py-2 text-zinc-50 cursor-pointer"
-        >
-          Sign up
-        </UButton>
-
-        <USeparator label="Or continue with" color="secondary" size="sm" />
-
-        <div class="grid grid-cols-2 gap-4">
-          <SharedSocialLoginButton icon="devicon:google" label="Google" />
-          <SharedSocialLoginButton
-            icon="logos:microsoft-icon"
-            label="Microsoft"
-          />
-        </div>
-      </UForm>
+      <div class="hidden md:block relative">
+        <NuxtImg src="https://static-00.iconduck.com/assets.00/jira-icon-2048x2048-nufjgz6n.png" width="300" height="300"  />
+        <div style="filter: blur(200px);" class=" absolute w-[300px] h-[300px] rounded-full top-0 bg-blue-600 "> </div>
+      </div>
     </div>
 
     <!-- section 2 -->

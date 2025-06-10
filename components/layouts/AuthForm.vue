@@ -2,6 +2,7 @@
 import type { FormError, FormSubmitEvent } from "@nuxt/ui";
 import { ID } from "appwrite";
 import { ACCOUNT } from "~/libs/appwrite";
+import type { OAuthProvider } from "appwrite";
 
 // PROPS
 const props = defineProps<{
@@ -104,6 +105,8 @@ const onSubmit = (event: FormSubmitEvent<typeof state>) => {
   if (props.status === "sign-up") return signUp(event);
   if (props.status === "sign-in") return signIn(event);
 };
+const onGoogle = () => ACCOUNT.createOAuth2Session('google' as OAuthProvider, "https://nuxt-1-jira-clone.netlify.app/");
+const onGithub = () => ACCOUNT.createOAuth2Session('github' as OAuthProvider, "https://nuxt-1-jira-clone.netlify.app/");
 </script>
 
 <template>
@@ -180,11 +183,13 @@ const onSubmit = (event: FormSubmitEvent<typeof state>) => {
           class="rounded-sm"
           icon="devicon:google"
           label="Google"
+          @click="onGoogle"
         />
         <SharedSocialLoginButton
           class="rounded-sm"
           icon="cib:github"
           label="Github"
+          @click="onGithub"
         />
       </div>
     </UForm>

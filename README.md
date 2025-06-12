@@ -1,75 +1,36 @@
-# Nuxt Minimal Starter
+<div align="center">
+  <img src="https://i.postimg.cc/137mPj3D/image.png" alt="Jira Clone Preview" />
+  <h1>Jira Clone ([demo](https://nuxt-1-jira-clone.netlify.app/))</h1>
+  <p>A simple Jira-like project management tool built with Nuxt 3 and Appwrite.</p>
+</div>
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+---
 
-## Setup
+## 🚀 Tech Stack
 
-Make sure to install dependencies:
+- **Nuxt 3** — Vue 3 powered full-stack framework  
+- **Tailwind CSS** — Utility-first CSS framework  
+- **Pinia** — State management for Vue  
+- **Appwrite** — Backend-as-a-service for auth & database  
+- **Vue Draggable** — Drag & drop Kanban-style columns
+
+---
+
+## 📦 Installation
 
 ```bash
-# npm
+# 1. Clone the repo
+git clone https://github.com/azykdeveloper/nuxt-1-jira-clone.git
+
+# 2. Navigate into the directory
+cd nuxt-1-jira-clone
+
+# 3. Install dependencies
 npm install
 
-# pnpm
-pnpm install
+# 4. Add your Appwrite environment variables
+cp .env.example .env
+# Fill in .env with your Appwrite credentials
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# 5. Run the development server
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

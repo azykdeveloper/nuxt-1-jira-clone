@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://i.postimg.cc/137mPj3D/image.png" alt="Jira Clone Preview" />
-  <h1>Jira Clone ([demo](https://nuxt-1-jira-clone.netlify.app/))</h1>
+  <h1>Jira Clone (<a href="https://nuxt-1-jira-clone.netlify.app">demo</a>) </h1>
   <p>A simple Jira-like project management tool built with Nuxt 3 and Appwrite.</p>
 </div>
 

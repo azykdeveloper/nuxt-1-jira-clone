@@ -11,7 +11,8 @@
 - **Nuxt 3** — Vue 3 powered full-stack framework  
 - **Tailwind CSS** — Utility-first CSS framework  
 - **Pinia** — State management for Vue  
-- **Appwrite** — Backend-as-a-service for auth & database  
+- **Appwrite** — Backend-as-a-service for auth & database
+- **tanstack** - Vue query
 - **Vue Draggable** — Drag & drop Kanban-style columns
 
 ---
